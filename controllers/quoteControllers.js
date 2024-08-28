@@ -2,17 +2,17 @@ const car = require("../db/cars");
 
 const cars = car[0];
 
-const CAR_YEAR = cars.year;
-const CAR_MAKE = cars.make;
-const CAR_MODEL = cars.model;
-const CAR_VALUE = cars.car_value;
-const RISK_RATING = cars.risk_rating;
-const YEARLY = 100;
-const MONTHLY = 12;
+const carYear = cars.year;
+const carMake = cars.make;
+const carModel = cars.model;
+const carValue = cars.car_value;
+const riskRating = cars.risk_rating;
+const BY_YEAR = 100;
+const BY_MONTH = 12;
 
 const getQuoteApiHandle = (req, res) => {
   console.log(req.query);
-  const yearlyPremium = getYearlyPremium(CAR_VALUE, RISK_RATING);
+  const yearlyPremium = getYearlyPremium(carValue, riskRating);
   const monthlyPremium = getMonthlyPremium(yearlyPremium);
   const result = { yearlyPremium, monthlyPremium };
   res.status(200).json(result);
@@ -50,23 +50,15 @@ const getRiskDescription = (riskRate) => {
 };
 
 const getYearlyPremium = (carValue, riskRate) => {
-  return parseFloat(((carValue * riskRate) / YEARLY).toFixed(2));
+  return parseFloat(((carValue * riskRate) / BY_YEAR).toFixed(2));
 };
 
 const getMonthlyPremium = (yearlyPremium) => {
-  return parseFloat((yearlyPremium / MONTHLY).toFixed(2));
+  return parseFloat((yearlyPremium / BY_MONTH).toFixed(2));
 };
 
-console.log(
-  `${CAR_YEAR} ${CAR_MAKE} ${CAR_MODEL} is a ${getRiskDescription(
-    RISK_RATING
-  )} vehicle. Yearly premium: $${getYearlyPremium(
-    CAR_VALUE,
-    RISK_RATING
-  )} and Monthly premium: $${getMonthlyPremium(
-    getYearlyPremium(CAR_VALUE, RISK_RATING)
-  )}`
-);
+console.log(`${carYear} ${carMake} ${carModel} is a ${getRiskDescription(riskRating)} vehicle. Yearly premium: $${getYearlyPremium(carValue, riskRating)} and Monthly premium: $${getMonthlyPremium(getYearlyPremium(carValue, riskRating))}`);
+
 
 console.table(
   car.map((car) => {

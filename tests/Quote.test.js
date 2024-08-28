@@ -14,7 +14,7 @@ describe("getQuote", () => {
   });
 
   test("Returns an error if the risk rating is missing, out of range, or not a valid number", () => {
-    const MOCK_RISK_VALUE_1 = -10000;
+    const MOCK_RISK_VALUE_1 = -1;
     const MOCK_RISK_VALUE_2 = undefined;
     const MOCK_RISK_VALUE_3 = "invalid";
     const RISK_VALUE_ERROR = { error: "there is an error" };
@@ -31,16 +31,14 @@ describe("getQuote", () => {
     expect(quote.getRiskDescription(MOCK_CAR_2)).toBe("Low Risk");
   });
   test("Calculates the yearly and monthly premium based on the car value and risk rating", () => {
-    const CAR_VALUE = 24000;
-    const RISK_RATING = 3;
-    const YEARLY = 100;
-    const MONTHLY = 12;
-    const YEARLY_PREMIUM = parseFloat(
-      ((CAR_VALUE * RISK_RATING) / YEARLY).toFixed(2)
-    );
-    const MONTHLY_PREMIUM = parseFloat((YEARLY_PREMIUM / MONTHLY).toFixed(2));
-
-    expect(quote.getYearlyPremium(CAR_VALUE, RISK_RATING)).toBe(YEARLY_PREMIUM);
+    const carValue = 24000;
+    const riskRating = 3;
+    const BY_YEAR = 100;
+    const BY_MONTH = 12;
+    const YEARLY_PREMIUM = parseFloat(((carValue * riskRating) / BY_YEAR).toFixed(2));
+    const MONTHLY_PREMIUM = parseFloat((YEARLY_PREMIUM / BY_MONTH).toFixed(2));
+  
+    expect(quote.getYearlyPremium(carValue, riskRating)).toBe(YEARLY_PREMIUM);
     expect(quote.getMonthlyPremium(YEARLY_PREMIUM)).toBe(MONTHLY_PREMIUM);
   });
 });

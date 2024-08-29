@@ -1,4 +1,3 @@
-// Function to calculate the risk rating based on claim history
 function calculateRiskRating(claimHistory) {
     if (typeof claimHistory !== 'string' || !claimHistory.trim()) {
         return { error: "there is an error" };
@@ -10,7 +9,7 @@ function calculateRiskRating(claimHistory) {
     const lowerCaseHistory = claimHistory.toLowerCase();
 
     keywords.forEach(keyword => {
-        const regex = new RegExp(`\\b${keyword}\\w*\\b`, 'g');
+        const regex = new RegExp(`\\b${keyword}\\w*\\b`, 'g'); // \\b` - boundary, \\w* - allows plurals
         const matches = lowerCaseHistory.match(regex);
         if (matches) {
             keywordCount += matches.length;
@@ -35,7 +34,7 @@ function calculateRiskRating(claimHistory) {
 
 // Controller to handle API requests
 const riskRatingController = (req, res) => {
-    const { claimHistory } = req.body;  // Extract claimHistory from the request body
+    const { claimHistory } = req.body;  
     const result = calculateRiskRating(claimHistory);  // Call the risk rating function
 
     if (result.error) {

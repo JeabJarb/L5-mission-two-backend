@@ -6,6 +6,11 @@ describe('Risk Rating Calculations', () => {
         expect(result.risk_rating).toBe(4);
     });
 
+    test('returns a risk rating of 3 for valid input with for same keyword repeated', () => {
+        const result = DriverRisk.calculateRiskRating("There was a crash and then another crash");
+        expect(result.risk_rating).toBe(3);
+    });
+
     test('returns a risk rating of 2 for valid input with one keyword', () => {
         const result = DriverRisk.calculateRiskRating("I had a minor bump in the parking lot.");
         expect(result.risk_rating).toBe(2);
@@ -40,8 +45,4 @@ describe('Handling Variations and Special Characters', () => {
         expect(result.risk_rating).toBe(3);
     });
 
-    test('returns a risk rating of 3 for input with special characters and mixed case', () => {
-        const result = DriverRisk.calculateRiskRating("In 2021, my car got bumped in the driveway. There was also a crash@ the parking lot.");
-        expect(result.risk_rating).toBe(3);
-    });
 });

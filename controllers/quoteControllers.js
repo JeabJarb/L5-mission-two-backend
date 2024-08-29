@@ -57,8 +57,16 @@ const getMonthlyPremium = (yearlyPremium) => {
   return parseFloat((yearlyPremium / BY_MONTH).toFixed(2));
 };
 
-console.log(`${carYear} ${carMake} ${carModel} is a ${getRiskDescription(riskRating)} vehicle. Yearly premium: $${getYearlyPremium(carValue, riskRating)} and Monthly premium: $${getMonthlyPremium(getYearlyPremium(carValue, riskRating))}`);
-
+console.log(
+  `${carYear} ${carMake} ${carModel} is a ${getRiskDescription(
+    riskRating
+  )} vehicle. Yearly premium: $${getYearlyPremium(
+    carValue,
+    riskRating
+  )} and Monthly premium: $${getMonthlyPremium(
+    getYearlyPremium(carValue, riskRating)
+  )}`
+);
 
 console.table(
   car.map((car) => {

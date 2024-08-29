@@ -34,9 +34,11 @@ describe("getQuote", () => {
     const riskRating = 3;
     const BY_YEAR = 100;
     const BY_MONTH = 12;
-    const YEARLY_PREMIUM = parseFloat(((carValue * riskRating) / BY_YEAR).toFixed(2));
+    const YEARLY_PREMIUM = parseFloat(
+      ((carValue * riskRating) / BY_YEAR).toFixed(2)
+    );
     const MONTHLY_PREMIUM = parseFloat((YEARLY_PREMIUM / BY_MONTH).toFixed(2));
-  
+
     expect(quote.getYearlyPremium(carValue, riskRating)).toBe(YEARLY_PREMIUM);
     expect(quote.getMonthlyPremium(YEARLY_PREMIUM)).toBe(MONTHLY_PREMIUM);
   });

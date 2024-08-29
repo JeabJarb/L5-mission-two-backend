@@ -1,3 +1,8 @@
+const car = require("../db/cars");
+
+const cars = car;
+
+// Function to calculate risk rating
 function calculateRiskRating(claimHistory) {
     if (typeof claimHistory !== 'string' || !claimHistory.trim()) {
         return { error: "there is an error" };
@@ -9,7 +14,7 @@ function calculateRiskRating(claimHistory) {
     const lowerCaseHistory = claimHistory.toLowerCase();
 
     keywords.forEach(keyword => {
-        const regex = new RegExp(`\\b${keyword}\\w*\\b`, 'g'); // \\b` - boundary, \\w* - allows plurals
+        const regex = new RegExp(`\\b${keyword}\\w*\\b`, 'g'); // \\b - boundary, \\w* - allows plurals
         const matches = lowerCaseHistory.match(regex);
         if (matches) {
             keywordCount += matches.length;
@@ -31,6 +36,21 @@ function calculateRiskRating(claimHistory) {
 
     return { risk_rating };
 }
+
+// Display the data in a table
+console.table(
+    cars.map(car => {
+        const { risk_rating } = calculateRiskRating(car.claim_history);
+        return {
+            year: car.year,
+            make: car.make,
+            model: car.model,
+            car_value: car.car_value,
+            claim_history: car.claim_history,
+            risk_rating: risk_rating, 
+        };
+    })
+);
 
 // Controller to handle API requests
 const riskRatingController = (req, res) => {

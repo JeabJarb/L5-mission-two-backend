@@ -1,6 +1,6 @@
 const pool=require("../db/db")
 
-// ===== customerID  ======== //
+// ===== vehicles  ======== //
 const getvehicles = (req, res) => {
   console.log(`/api/vehicles/ endpoint was hit🎯`);
   const query = `SELECT Test_Case_Number, Test_Description, Make, Model, Year, Expected_Output FROM vehicles`;
@@ -28,8 +28,8 @@ const getvehicles = (req, res) => {
         return {
             Test_Case_Number : vehicle.Test_Case_Number,
             // Make: vehicle.Model,
-            Model : transformedModelSum,
-            Year: vehicle.Year,
+            Model :  `${vehicle.Model} ${vehicle.Year}`, // Combine Model and Year
+            // Year: vehicle.Year,
             Expected_Output : updatedYear,
             Test_Description : vehicle.Test_Description
         };

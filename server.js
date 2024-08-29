@@ -9,13 +9,13 @@ app.use(cors());
 app.use(express.json());
 
 // ========== ROUTE IMPORTS ========== //
-const customersRouter = require("./routes/customersRoutes");
 const vehiclesRouter = require("./routes/vehiclesRoutes");
 const riskRatingRouter = require("./routes/riskRatingRoutes");
 const quoteRouter = require("./routes/quoteRouters");
 
 // Create API ENDPOINTS HERE!!!
 // ROOT ENDPOINT
+
 app.get("/", (req, res) => {
   res.send("The backend is functioning!");
 });

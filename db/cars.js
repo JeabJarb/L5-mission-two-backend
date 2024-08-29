@@ -35,9 +35,9 @@ const cars = [
     make: "Tesla",
     model: "Model 3",
     year: 2022,
-    risk_rating: 5,
+    risk_rating: 1,
     car_value: 45000,
-    claim_history: "Had a crash resulting in a scratch and collided with van which scratched! door ."
+    claim_history: "I have no prior claims ."
   },
   {
     make: "BMW",

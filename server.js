@@ -20,10 +20,8 @@ app.get("/", (req, res) => {
   res.send("The backend is functioning!");
 });
 
-app.use("/api/vehicle", vehiclesRouter);
-
 // Car Value Endpoint
-app.use(customersRouter);
+app.use("/api/vehicle", vehiclesRouter);
 
 // Risk Rating Endpoint
 app.use("/api/claims", riskRatingRouter);

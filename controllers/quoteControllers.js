@@ -19,12 +19,16 @@ const getQuoteApiHandle = (req, res) => {
 };
 
 const getChecklist = (carValue, riskRate) => {
-
   if (carValue === undefined || isNaN(carValue) || carValue <= 0) {
     return { error: "there is an error" };
   }
 
-  if (riskRate === undefined || isNaN(riskRate) || riskRate <= 0 || riskRate > 5) {
+  if (
+    riskRate === undefined ||
+    isNaN(riskRate) ||
+    riskRate <= 0 ||
+    riskRate > 5
+  ) {
     return { error: "there is an error" };
   }
 
@@ -53,8 +57,16 @@ const getMonthlyPremium = (yearlyPremium) => {
   return parseFloat((yearlyPremium / BY_MONTH).toFixed(2));
 };
 
-console.log(`${carYear} ${carMake} ${carModel} is a ${getRiskDescription(riskRating)} vehicle. Yearly premium: $${getYearlyPremium(carValue, riskRating)} and Monthly premium: $${getMonthlyPremium(getYearlyPremium(carValue, riskRating))}`);
-
+console.log(
+  `${carYear} ${carMake} ${carModel} is a ${getRiskDescription(
+    riskRating
+  )} vehicle. Yearly premium: $${getYearlyPremium(
+    carValue,
+    riskRating
+  )} and Monthly premium: $${getMonthlyPremium(
+    getYearlyPremium(carValue, riskRating)
+  )}`
+);
 
 console.table(
   car.map((car) => {

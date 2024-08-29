@@ -1,13 +1,6 @@
 const quote = require("../controllers/quoteControllers");
-const car = require("../db/cars");
 
 describe("getQuote", () => {
-  const cars = car[0];
-
-  const CAR_YEAR = cars.year;
-  const CAR_MAKE = cars.make;
-  const CAR_MODEL = cars.model;
-
   test("Returns an error if the car value is missing or not a valid number", () => {
     // Mock different invalid car values
     const MOCK_CAR_VALUE_1 = -10000;
@@ -44,9 +37,11 @@ describe("getQuote", () => {
     const riskRating = 3;
     const BY_YEAR = 100;
     const BY_MONTH = 12;
-    const YEARLY_PREMIUM = parseFloat(((carValue * riskRating) / BY_YEAR).toFixed(2));
+    const YEARLY_PREMIUM = parseFloat(
+      ((carValue * riskRating) / BY_YEAR).toFixed(2)
+    );
     const MONTHLY_PREMIUM = parseFloat((YEARLY_PREMIUM / BY_MONTH).toFixed(2));
-  
+
     expect(quote.getYearlyPremium(carValue, riskRating)).toBe(YEARLY_PREMIUM);
     expect(quote.getMonthlyPremium(YEARLY_PREMIUM)).toBe(MONTHLY_PREMIUM);
   });

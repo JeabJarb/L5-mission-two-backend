@@ -19,12 +19,16 @@ const getQuoteApiHandle = (req, res) => {
 };
 
 const getChecklist = (carValue, riskRate) => {
-
   if (carValue === undefined || isNaN(carValue) || carValue <= 0) {
     return { error: "there is an error" };
   }
 
-  if (riskRate === undefined || isNaN(riskRate) || riskRate <= 0 || riskRate > 5) {
+  if (
+    riskRate === undefined ||
+    isNaN(riskRate) ||
+    riskRate <= 0 ||
+    riskRate > 5
+  ) {
     return { error: "there is an error" };
   }
 

@@ -2,36 +2,33 @@ const quote = require("../controllers/quoteControllers");
 
 describe("getQuote", () => {
   test("Returns an error if the car value is missing or not a valid number", () => {
-    // Mock different invalid car values
-    const MOCK_CAR_VALUE_1 = -10000;
-    const MOCK_CAR_VALUE_2 = undefined;
-    const MOCK_CAR_VALUE_3 = "invalid";
+    const mockCarValue1 = -10000;
+    const mockCarValue2 = undefined;
+    const mockCarValue3 = "invalid";
     const CAR_VALUE_ERROR = { error: "there is an error" };
 
-    expect(quote.getChecklist(MOCK_CAR_VALUE_1)).toEqual(CAR_VALUE_ERROR);
-    expect(quote.getChecklist(MOCK_CAR_VALUE_2)).toEqual(CAR_VALUE_ERROR);
-    expect(quote.getChecklist(MOCK_CAR_VALUE_3)).toEqual(CAR_VALUE_ERROR);
+    expect(quote.getChecklist(mockCarValue1)).toEqual(CAR_VALUE_ERROR);
+    expect(quote.getChecklist(mockCarValue2)).toEqual(CAR_VALUE_ERROR);
+    expect(quote.getChecklist(mockCarValue3)).toEqual(CAR_VALUE_ERROR);
   });
 
   test("Returns an error if the risk rating is missing, out of range, or not a valid number", () => {
-    const MOCK_RISK_VALUE_1 = -1;
-    const MOCK_RISK_VALUE_2 = undefined;
-    const MOCK_RISK_VALUE_3 = "invalid";
+    const mockRiskValue1 = -1;
+    const mockRiskValue2 = undefined;
+    const mockRiskValue3 = "invalid";
     const RISK_VALUE_ERROR = { error: "there is an error" };
 
-    expect(quote.getChecklist(MOCK_RISK_VALUE_1)).toEqual(RISK_VALUE_ERROR);
-    expect(quote.getChecklist(MOCK_RISK_VALUE_2)).toEqual(RISK_VALUE_ERROR);
-    expect(quote.getChecklist(MOCK_RISK_VALUE_3)).toEqual(RISK_VALUE_ERROR);
+    expect(quote.getChecklist(mockRiskValue1)).toEqual(RISK_VALUE_ERROR);
+    expect(quote.getChecklist(mockRiskValue2)).toEqual(RISK_VALUE_ERROR);
+    expect(quote.getChecklist(mockRiskValue3)).toEqual(RISK_VALUE_ERROR);
   });
-
   test("Test the lowest and highest risk rating values", () => {
-    const MOCK_CAR_1 = 5;
-    const MOCK_CAR_2 = 1;
+    const mockCarRiskRating1 = 5;
+    const mockCarRiskRating2 = 1;
 
-    expect(quote.getRiskDescription(MOCK_CAR_1)).toBe("Extremely High Risk");
-    expect(quote.getRiskDescription(MOCK_CAR_2)).toBe("Low Risk");
+    expect(quote.getRiskDescription(mockCarRiskRating1)).toBe("Extremely High Risk");
+    expect(quote.getRiskDescription(mockCarRiskRating2)).toBe("Low Risk");
   });
-
   test("Calculates the yearly and monthly premium based on the car value and risk rating", () => {
     const carValue = 24000;
     const riskRating = 3;
